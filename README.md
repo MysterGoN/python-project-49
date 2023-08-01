@@ -3,4 +3,4 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/d6ffd03e47fba288890c/maintainability)](https://codeclimate.com/github/MysterGoN/python-project-49/maintainability)
 
 ### Even game example
-[![asciicast](https://asciinema.org/a/TKYVYynPgQO6xbQydFzE5Jh3x.svg)](https://asciinema.org/a/TKYVYynPgQO6xbQydFzE5Jh3x)
+[![asciicast](https://asciinema.org/a/c7StrXPNyEcGPh9wNVknynIdI.svg)](https://asciinema.org/a/c7StrXPNyEcGPh9wNVknynIdI)

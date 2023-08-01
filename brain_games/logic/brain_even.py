@@ -1,51 +1,38 @@
 import random
-from enum import StrEnum
+from enum import Enum
 
-from brain_games.logic import core
-
-_GAME_ROUNDS = 3
+from brain_games.logic.core import start_game_cycle
 
 
-class Answer(StrEnum):
+class Answer(Enum):
     YES = "yes"
     NO = "no"
 
 
 def start_game():
-    core.welcome()
-    player_name = core.get_player_name()
-
-    print('Answer "yes" if the number is even, otherwise answer "no".')
-    for _ in range(_GAME_ROUNDS):
-        number = _generate_random_number()
-        print(f"Question: {number}")
-        answer = core.get_answer()
-        correct_answer = _get_correct_answer(number)
-
-        if answer == correct_answer:
-            print("Correct!")
-
-        else:
-            print(
-                f"'{answer}' is wrong answer ;(. "
-                f"Correct answer was '{correct_answer}'."
-            )
-            core.lets_try_again(player_name)
-            break
-
-    else:
-        core.congratulate_player(player_name)
+    description = 'Answer "yes" if the number is even, otherwise answer "no".'
+    start_game_cycle(
+        description,
+        _generate_random_number,
+        _get_correct_answer,
+    )
 
 
-def _get_correct_answer(number: int) -> Answer:
+def _get_correct_answer(number: int) -> str:
     is_even = _check_number_is_even(number)
+    answer = Answer.YES if is_even else Answer.NO
+    return answer.value
 
-    return Answer.YES if is_even else Answer.NO
 
-
-def _generate_random_number(start: int = 0, stop: int = 100) -> int:
-    return random.randrange(start, stop)
+def _generate_random_number(
+    start: int = 0, stop: int = 100
+) -> tuple[str, tuple[int]]:
+    number = random.randrange(start, stop)
+    return str(number), (number,)
 
 
 def _check_number_is_even(number: int) -> bool:
     return number % 2 == 0
+
+
+__all__ = ['start_game']
