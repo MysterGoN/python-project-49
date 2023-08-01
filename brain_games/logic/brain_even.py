@@ -1,12 +1,6 @@
 import random
-from enum import Enum
 
 from brain_games.logic.core import start_game_cycle
-
-
-class Answer(Enum):
-    YES = "yes"
-    NO = "no"
 
 
 def start_game():
@@ -20,8 +14,8 @@ def start_game():
 
 def _get_correct_answer(number: int) -> str:
     is_even = _check_number_is_even(number)
-    answer = Answer.YES if is_even else Answer.NO
-    return answer.value
+    answer = "yes" if is_even else "no"
+    return answer
 
 
 def _generate_random_number(
