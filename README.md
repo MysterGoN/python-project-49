@@ -7,3 +7,6 @@
 
 ### Calc game example
 [![asciicast](https://asciinema.org/a/gITqjGs6vkCwKpbUBbZR044po.svg)](https://asciinema.org/a/gITqjGs6vkCwKpbUBbZR044po)
+
+### GCD game example
+[![asciicast](https://asciinema.org/a/Op7tqeYVf8qUZNutxPM5KwadM.svg)](https://asciinema.org/a/Op7tqeYVf8qUZNutxPM5KwadM)
