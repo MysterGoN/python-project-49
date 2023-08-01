@@ -1,4 +1,3 @@
-import math
 import random
 
 from brain_games.core import start_game_cycle
