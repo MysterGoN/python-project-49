@@ -4,3 +4,6 @@
 
 ### Even game example
 [![asciicast](https://asciinema.org/a/c7StrXPNyEcGPh9wNVknynIdI.svg)](https://asciinema.org/a/c7StrXPNyEcGPh9wNVknynIdI)
+
+### Calc game example
+[![asciicast](https://asciinema.org/a/gITqjGs6vkCwKpbUBbZR044po.svg)](https://asciinema.org/a/gITqjGs6vkCwKpbUBbZR044po)
