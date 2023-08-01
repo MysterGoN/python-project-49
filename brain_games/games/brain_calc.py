@@ -1,6 +1,6 @@
 import random
 
-from brain_games.logic.core import start_game_cycle
+from brain_games.core import start_game_cycle
 
 _ADD = "+"
 _SUB = "-"
