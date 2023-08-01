@@ -34,9 +34,6 @@ def _find_greatest_common_division(a: int, b: int) -> int:
         if a % i == 0 and b % i == 0:
             gcd = i
 
-    if gcd != math.gcd(a, b):
-        print(f"DEBUG: {gcd}, {math.gcd(a, b)}")
-
     return gcd
 
 
