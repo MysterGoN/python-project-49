@@ -33,17 +33,14 @@ def _generate_expression(
 def _get_correct_answer(a: int, b: int, operation: str) -> str:
     global _ADD, _SUB, _MUL
 
-    if operation == _ADD:
-        answer = _add(a, b)
-
-    elif operation == _SUB:
+    if operation == _SUB:
         answer = _sub(a, b)
 
     elif operation == _MUL:
         answer = _mul(a, b)
 
     else:
-        raise NotImplementedError
+        answer = _add(a, b)
 
     return str(answer)
 
