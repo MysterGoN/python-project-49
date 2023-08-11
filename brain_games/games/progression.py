@@ -1,6 +1,6 @@
 import random
 
-from brain_games.core import start_game_cycle
+from brain_games.core import start_game_cycle, create_game_rounds
 
 _PROGRESSION_NUMBERS_COUNT_MIN = 5
 _PROGRESSION_NUMBERS_COUNT_MAX = 15
@@ -8,61 +8,94 @@ _PROGRESSION_NUMBERS_COUNT_MAX = 15
 
 def start_game():
     description = 'What number is missing in the progression?'
+    game_rounds = create_game_rounds(_create_game_round, [])
+
     start_game_cycle(
         description,
-        _generate_progression,
-        _get_correct_answer,
+        game_rounds,
     )
 
 
-def _generate_progression(
+def _create_game_round(
     start: int = 0,
     stop: int = 100,
     step_start: int = 1,
     step_stop: int = 10,
-) -> tuple[str, tuple[int, int, int, int]]:
+) -> tuple[str, str]:
+    progression = _generate_progression(start, stop, step_start, step_stop)
+
+    hidden_number_position = _chose_hidden_number_position(len(progression))
+    hidden_progression = _create_hidden_progression(
+        progression, hidden_number_position
+    )
+
+    question = _create_a_question(hidden_progression)
+    correct_answer = _get_correct_answer(progression, hidden_number_position)
+
+    return question, correct_answer
+
+
+def _generate_progression(
+    start: int,
+    stop: int,
+    step_start: int,
+    step_stop: int,
+) -> list[int]:
+    start_number = random.randrange(start, stop)
+    step = random.randrange(step_start, step_stop)
     progression_numbers_count = random.randrange(
         _PROGRESSION_NUMBERS_COUNT_MIN, _PROGRESSION_NUMBERS_COUNT_MAX
     )
 
-    start_number = random.randrange(start, stop)
-    step = random.randrange(step_start, step_stop)
-    hidden_number_position = random.randrange(0, progression_numbers_count)
-
-    answer_args = (
-        start_number, step, progression_numbers_count, hidden_number_position
-    )
-
-    progression_numbers = []
-    progression_iter = _yield_progression(
+    arithmetic_progression = _create_arithmetic_progression(
         start_number, step, progression_numbers_count
     )
-    for i, number in enumerate(progression_iter):
+    return arithmetic_progression
+
+
+def _create_arithmetic_progression(
+    start_number: int,
+    step: int,
+    numbers_count: int,
+) -> list[int]:
+    res = []
+    for i in range(numbers_count):
+        res.append(start_number + i * step)
+
+    return res
+
+
+def _chose_hidden_number_position(progression_length: int) -> int:
+    return random.randrange(0, progression_length)
+
+
+def _create_hidden_progression(
+    progression: list[int],
+    hidden_number_position: int,
+) -> list[str]:
+    hidden_number_symbol = '..'
+
+    hidden_progression = []
+    for i, number in enumerate(progression):
         if i == hidden_number_position:
-            progression_numbers.append("..")
+            hidden_progression.append(hidden_number_symbol)
 
         else:
-            progression_numbers.append(str(number))
+            hidden_progression.append(str(number))
 
-    return " ".join(progression_numbers), answer_args
+    return hidden_progression
+
+
+def _create_a_question(hidden_progression: list[str]) -> str:
+    return ' '.join(hidden_progression)
 
 
 def _get_correct_answer(
-    start: int,
-    step: int,
-    numbers_count: int,
+    progression: list[int],
     hidden_number_position: int,
 ) -> str:
-    for i, number in enumerate(_yield_progression(start, step, numbers_count)):
-        if i == hidden_number_position:
-            return str(number)
-
-
-def _yield_progression(start: int, step: int, elements_count: int):
-    number = start
-    for _ in range(elements_count):
-        yield number
-        number += step
+    hidden_number = progression[hidden_number_position]
+    return f'{hidden_number}'
 
 
 __all__ = ['start_game']

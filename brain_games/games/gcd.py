@@ -1,23 +1,38 @@
 import random
 
-from brain_games.core import start_game_cycle
+from brain_games.core import start_game_cycle, create_game_rounds
 
 
 def start_game():
     description = 'Find the greatest common divisor of given numbers.'
+    game_rounds = create_game_rounds(_create_game_round, [])
+
     start_game_cycle(
         description,
-        _generate_expression,
-        _get_correct_answer,
+        game_rounds,
     )
 
 
-def _generate_expression(
+def _create_game_round(
     start: int = 0, stop: int = 100
-) -> tuple[str, tuple[int, int]]:
+) -> tuple[str, str]:
+    a, b = _generate_expression(start, stop)
+
+    question = _create_a_question(a, b)
+    correct_answer = _get_correct_answer(a, b)
+
+    return question, correct_answer
+
+
+def _generate_expression(start: int, stop: int) -> tuple[int, int]:
     a = random.randrange(start, stop)
     b = random.randrange(start, stop)
-    return f"{a} {b}", (a, b)
+
+    return a, b
+
+
+def _create_a_question(a: int, b: int) -> str:
+    return f'{a} {b}'
 
 
 def _get_correct_answer(a: int, b: int) -> str:
