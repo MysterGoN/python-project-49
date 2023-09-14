@@ -1,12 +1,18 @@
 [tool.poetry]
 name = "hexlet-code"
-version = "0.1.0"
-description = ""
+version = "0.9.0"
+description = "Brain games collection"
 authors = ["Nikolay Granenkov <nickgran@yandex.ru>"]
 readme = "README.md"
 packages = [
     { include = "brain_games" },
 ]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: Console",
+    "Programming Language :: Python :: 3.11"
+]
+repository = "https://github.com/MysterGoN/python-project-49"
 
 [tool.poetry.scripts]
 brain-games = "brain_games.scripts.brain_games:main"
