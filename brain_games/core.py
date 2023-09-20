@@ -21,68 +21,28 @@ def start_game_cycle(
     rules_description: str,
     game_rounds: list[tuple[str, str]],
 ):
-    _welcome()
-    player_name = _get_player_name()
-    _greet_the_player(player_name)
+    print('Welcome to the Brain Games!')
+    player_name = prompt.string('May I have your name? ')
+    print(f'Hello, {player_name}!')
 
-    _show_game_rules(rules_description)
+    print(rules_description)
     for question, correct_answer in game_rounds:
-        _ask_question(question)
+        print(f'Question: {question}')
 
-        user_answer = _get_answer()
+        user_answer = prompt.string('Your answer: ')
         if user_answer == correct_answer:
-            _congrats_on_the_correct_answer()
+            print('Correct!')
 
         else:
-            _print_lose_message(user_answer, correct_answer)
-            _lets_try_again(player_name)
+            print(
+                f"'{user_answer}' is wrong answer ;(. "
+                f"Correct answer was '{correct_answer}'."
+            )
+            print(f"Let's try again, {player_name}!")
             break
 
     else:
-        _congrats_on_winning_the_game(player_name)
-
-
-def _welcome():
-    print('Welcome to the Brain Games!')
-
-
-def _get_player_name(prompt_text: str = 'May I have your name? ') -> str:
-    return prompt.string(prompt_text)
-
-
-def _greet_the_player(player_name: str):
-    print(f'Hello, {player_name}!')
-
-
-def _show_game_rules(rules_description: str):
-    print(rules_description)
-
-
-def _ask_question(text: Any):
-    print(f'Question: {text}')
-
-
-def _get_answer(prompt_text: str = 'Your answer: ') -> str:
-    return prompt.string(prompt_text)
-
-
-def _congrats_on_the_correct_answer():
-    print('Correct!')
-
-
-def _congrats_on_winning_the_game(player_name: str):
-    print(f'Congratulations, {player_name}!')
-
-
-def _print_lose_message(wrong_answer: str, correct_answer: str):
-    print(
-        f"'{wrong_answer}' is wrong answer ;(. "
-        f"Correct answer was '{correct_answer}'."
-    )
-
-
-def _lets_try_again(player_name: str):
-    print(f"Let's try again, {player_name}!")
+        print(f'Congratulations, {player_name}!')
 
 
 __all__ = ['create_game_rounds', 'start_game_cycle']
