@@ -1,14 +1,14 @@
 import random
 from math import sqrt
 
-from brain_games.core import start_game_cycle, create_game_rounds
+from brain_games.core import start_game_cycle, generate_game_rounds
 
 
 def start_game():
     description = (
         'Answer "yes" if given number is prime. Otherwise answer "no".'
     )
-    game_rounds = create_game_rounds(_create_game_round, [])
+    game_rounds = generate_game_rounds(_create_game_round, [])
 
     start_game_cycle(
         description,

@@ -1,25 +1,22 @@
-from typing import Any, Callable
+from typing import Any, Callable, Iterator
 
 import prompt
 
 _DEFAULT_GAME_ROUNDS = 3
 
 
-def create_game_rounds(
+def generate_game_rounds(
     game_round_generation_function: Callable[[Any, ...], tuple[str, str]],
     function_args: list[Any],
     rounds_count: int = _DEFAULT_GAME_ROUNDS,
-) -> list[tuple[str, str]]:
-    game_rounds = []
+) -> Iterator[tuple[str, str]]:
     for _ in range(rounds_count):
-        game_rounds.append(game_round_generation_function(*function_args))
-
-    return game_rounds
+        yield game_round_generation_function(*function_args)
 
 
 def start_game_cycle(
     rules_description: str,
-    game_rounds: list[tuple[str, str]],
+    game_rounds: Iterator[tuple[str, str]],
 ):
     print('Welcome to the Brain Games!')
     player_name = prompt.string('May I have your name? ')
@@ -45,4 +42,4 @@ def start_game_cycle(
         print(f'Congratulations, {player_name}!')
 
 
-__all__ = ['create_game_rounds', 'start_game_cycle']
+__all__ = ['generate_game_rounds', 'start_game_cycle']

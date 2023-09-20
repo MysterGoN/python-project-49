@@ -1,7 +1,7 @@
 import operator
 import random
 
-from brain_games.core import start_game_cycle, create_game_rounds
+from brain_games.core import start_game_cycle, generate_game_rounds
 
 _OPERATIONS = {
     '+': operator.add,
@@ -14,7 +14,7 @@ _OPERATORS = list(_OPERATIONS.keys())
 
 def start_game():
     description = 'What is the result of the expression?'
-    game_rounds = create_game_rounds(_create_game_round, [])
+    game_rounds = generate_game_rounds(_create_game_round, [])
 
     start_game_cycle(
         description,
