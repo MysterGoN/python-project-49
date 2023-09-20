@@ -1,22 +1,10 @@
 import random
 
-from brain_games.core import start_game_cycle, generate_game_rounds
-
 _PROGRESSION_NUMBERS_COUNT_MIN = 5
 _PROGRESSION_NUMBERS_COUNT_MAX = 15
 
 
-def start_game():
-    description = 'What number is missing in the progression?'
-    game_rounds = generate_game_rounds(_create_game_round, [])
-
-    start_game_cycle(
-        description,
-        game_rounds,
-    )
-
-
-def _create_game_round(
+def create_game_round(
     start: int = 0,
     stop: int = 100,
     step_start: int = 1,
@@ -98,4 +86,4 @@ def _get_correct_answer(
     return f'{hidden_number}'
 
 
-__all__ = ['start_game']
+__all__ = ['create_game_round']
