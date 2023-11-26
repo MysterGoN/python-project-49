@@ -5,8 +5,7 @@ from brain_games.games import calc
 
 
 def main():
-    description = 'What is the result of the expression?'
-    start_game_cycle(description, calc.create_game_round, [])
+    start_game_cycle(calc.DESCRIPTION, calc.create_game_round, [])
 
 
 if __name__ == '__main__':

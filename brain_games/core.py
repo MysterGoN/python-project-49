@@ -45,6 +45,3 @@ def _generate_game_rounds(
 ) -> Iterator[tuple[str, str]]:
     for _ in range(rounds_count):
         yield game_round_generation_function(*function_args)
-
-
-__all__ = ['start_game_cycle']

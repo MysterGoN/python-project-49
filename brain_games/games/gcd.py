@@ -1,5 +1,7 @@
 import random
 
+DESCRIPTION = 'Find the greatest common divisor of given numbers.'
+
 
 def create_game_round(
     start: int = 0, stop: int = 100
@@ -33,6 +35,3 @@ def _find_greatest_common_division(a: int, b: int) -> int:
             gcd = i
 
     return gcd
-
-
-__all__ = ['create_game_round']

@@ -5,10 +5,7 @@ from brain_games.games import prime
 
 
 def main():
-    description = (
-        'Answer "yes" if given number is prime. Otherwise answer "no".'
-    )
-    start_game_cycle(description, prime.create_game_round, [])
+    start_game_cycle(prime.DESCRIPTION, prime.create_game_round, [])
 
 
 if __name__ == '__main__':

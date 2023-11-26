@@ -1,5 +1,7 @@
 import random
 
+DESCRIPTION = 'Answer "yes" if the number is even, otherwise answer "no".'
+
 
 def create_game_round(
     start: int = 0, stop: int = 100
@@ -24,6 +26,3 @@ def _get_correct_answer(number: int) -> str:
 
 def _check_number_is_even(number: int) -> bool:
     return number % 2 == 0
-
-
-__all__ = ['create_game_round']

@@ -1,5 +1,7 @@
 import random
 
+DESCRIPTION = 'What number is missing in the progression?'
+
 _PROGRESSION_NUMBERS_COUNT_MIN = 5
 _PROGRESSION_NUMBERS_COUNT_MAX = 15
 
@@ -84,6 +86,3 @@ def _get_correct_answer(
 ) -> str:
     hidden_number = progression[hidden_number_position]
     return f'{hidden_number}'
-
-
-__all__ = ['create_game_round']

@@ -5,8 +5,7 @@ from brain_games.games import even
 
 
 def main():
-    description = 'Answer "yes" if the number is even, otherwise answer "no".'
-    start_game_cycle(description, even.create_game_round, [])
+    start_game_cycle(even.DESCRIPTION, even.create_game_round, [])
 
 
 if __name__ == '__main__':

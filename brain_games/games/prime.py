@@ -1,6 +1,8 @@
 import random
 from math import sqrt
 
+DESCRIPTION = 'Answer "yes" if given number is prime. Otherwise answer "no".'
+
 
 def create_game_round(
     start: int = 0, stop: int = 100000
@@ -33,6 +35,3 @@ def _check_number_is_prime(number: int) -> bool:
             return False
 
     return True
-
-
-__all__ = ['create_game_round']
