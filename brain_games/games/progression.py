@@ -1,42 +1,23 @@
 import random
 
 DESCRIPTION = 'What number is missing in the progression?'
-GENERATION_START_NUMBER = 0
-GENERATION_STOP_NUMBER = 100
-START_NUMBER_OF_STEP_GENERATION = 1
-STOP_NUMBER_OF_STEP_GENERATION = 10
+
+_GENERATION_START_NUMBER = 0
+_GENERATION_STOP_NUMBER = 100
+_START_NUMBER_OF_STEP_GENERATION = 1
+_STOP_NUMBER_OF_STEP_GENERATION = 10
 
 _PROGRESSION_NUMBERS_COUNT_MIN = 5
 _PROGRESSION_NUMBERS_COUNT_MAX = 15
 
 
 def create_game_round() -> tuple[str, str]:
-    progression = _generate_progression(
-        GENERATION_START_NUMBER,
-        GENERATION_STOP_NUMBER,
-        START_NUMBER_OF_STEP_GENERATION,
-        STOP_NUMBER_OF_STEP_GENERATION
+    start_number = random.randrange(
+        _GENERATION_START_NUMBER, _GENERATION_STOP_NUMBER
     )
-
-    hidden_number_position = _chose_hidden_number_position(len(progression))
-    hidden_progression = _create_hidden_progression(
-        progression, hidden_number_position
+    step = random.randrange(
+        _START_NUMBER_OF_STEP_GENERATION, _STOP_NUMBER_OF_STEP_GENERATION
     )
-
-    question = _create_a_question(hidden_progression)
-    correct_answer = _get_correct_answer(progression, hidden_number_position)
-
-    return question, correct_answer
-
-
-def _generate_progression(
-    start: int,
-    stop: int,
-    step_start: int,
-    step_stop: int,
-) -> list[int]:
-    start_number = random.randrange(start, stop)
-    step = random.randrange(step_start, step_stop)
     progression_numbers_count = random.randrange(
         _PROGRESSION_NUMBERS_COUNT_MIN, _PROGRESSION_NUMBERS_COUNT_MAX
     )
@@ -44,7 +25,17 @@ def _generate_progression(
     arithmetic_progression = _create_arithmetic_progression(
         start_number, step, progression_numbers_count
     )
-    return arithmetic_progression
+
+    progression_length = len(arithmetic_progression)
+    hidden_number_position = random.randrange(0, progression_length)
+    hidden_progression = _create_hidden_progression(
+        arithmetic_progression, hidden_number_position
+    )
+
+    question = ' '.join(hidden_progression)
+    correct_answer = str(arithmetic_progression[hidden_number_position])
+
+    return question, correct_answer
 
 
 def _create_arithmetic_progression(
@@ -57,10 +48,6 @@ def _create_arithmetic_progression(
         res.append(start_number + i * step)
 
     return res
-
-
-def _chose_hidden_number_position(progression_length: int) -> int:
-    return random.randrange(0, progression_length)
 
 
 def _create_hidden_progression(
@@ -78,15 +65,3 @@ def _create_hidden_progression(
             hidden_progression.append(str(number))
 
     return hidden_progression
-
-
-def _create_a_question(hidden_progression: list[str]) -> str:
-    return ' '.join(hidden_progression)
-
-
-def _get_correct_answer(
-    progression: list[int],
-    hidden_number_position: int,
-) -> str:
-    hidden_number = progression[hidden_number_position]
-    return f'{hidden_number}'

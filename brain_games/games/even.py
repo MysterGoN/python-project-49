@@ -1,30 +1,16 @@
 import random
 
 DESCRIPTION = 'Answer "yes" if the number is even, otherwise answer "no".'
-GENERATION_START_NUMBER = 0
-GENERATION_STOP_NUMBER = 100
+
+_GENERATION_START_NUMBER = 0
+_GENERATION_STOP_NUMBER = 100
 
 
 def create_game_round() -> tuple[str, str]:
-    number = _generate_random_number(
-        GENERATION_START_NUMBER, GENERATION_STOP_NUMBER
-    )
+    number = random.randrange(_GENERATION_START_NUMBER, _GENERATION_STOP_NUMBER)
 
     question = f'{number}'
-    correct_answer = _get_correct_answer(number)
+    number_is_even = number % 2 == 0
+    correct_answer = 'yes' if number_is_even else 'no'
 
     return question, correct_answer
-
-
-def _generate_random_number(start: int, stop: int) -> int:
-    return random.randrange(start, stop)
-
-
-def _get_correct_answer(number: int) -> str:
-    is_even = _check_number_is_even(number)
-    answer = 'yes' if is_even else 'no'
-    return answer
-
-
-def _check_number_is_even(number: int) -> bool:
-    return number % 2 == 0
