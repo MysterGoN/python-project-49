@@ -1,18 +1,22 @@
 import random
 
 DESCRIPTION = 'What number is missing in the progression?'
+GENERATION_START_NUMBER = 0
+GENERATION_STOP_NUMBER = 100
+START_NUMBER_OF_STEP_GENERATION = 1
+STOP_NUMBER_OF_STEP_GENERATION = 10
 
 _PROGRESSION_NUMBERS_COUNT_MIN = 5
 _PROGRESSION_NUMBERS_COUNT_MAX = 15
 
 
-def create_game_round(
-    start: int = 0,
-    stop: int = 100,
-    step_start: int = 1,
-    step_stop: int = 10,
-) -> tuple[str, str]:
-    progression = _generate_progression(start, stop, step_start, step_stop)
+def create_game_round() -> tuple[str, str]:
+    progression = _generate_progression(
+        GENERATION_START_NUMBER,
+        GENERATION_STOP_NUMBER,
+        START_NUMBER_OF_STEP_GENERATION,
+        STOP_NUMBER_OF_STEP_GENERATION
+    )
 
     hidden_number_position = _chose_hidden_number_position(len(progression))
     hidden_progression = _create_hidden_progression(

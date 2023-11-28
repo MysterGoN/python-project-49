@@ -2,20 +2,21 @@ import operator
 import random
 
 DESCRIPTION = 'What is the result of the expression?'
+GENERATION_START_NUMBER = 0
+GENERATION_STOP_NUMBER = 100
 
 _OPERATIONS = {
     '+': operator.add,
     '-': operator.sub,
     '*': operator.mul
 }
-
 _OPERATORS = list(_OPERATIONS.keys())
 
 
-def create_game_round(
-    start: int = 0, stop: int = 100
-) -> tuple[str, str]:
-    a, b, operation = _generate_expression(start, stop)
+def create_game_round() -> tuple[str, str]:
+    a, b, operation = _generate_expression(
+        GENERATION_START_NUMBER, GENERATION_STOP_NUMBER
+    )
 
     question = f'{a} {operation} {b}'
     correct_answer = _get_correct_answer(a, b, operation)

@@ -1,12 +1,12 @@
 import random
 
 DESCRIPTION = 'Find the greatest common divisor of given numbers.'
+GENERATION_START_NUMBER = 0
+GENERATION_STOP_NUMBER = 100
 
 
-def create_game_round(
-    start: int = 0, stop: int = 100
-) -> tuple[str, str]:
-    a, b = _generate_expression(start, stop)
+def create_game_round() -> tuple[str, str]:
+    a, b = _generate_expression(GENERATION_START_NUMBER, GENERATION_STOP_NUMBER)
 
     question = f'{a} {b}'
     correct_answer = _get_correct_answer(a, b)

@@ -5,7 +5,7 @@ from brain_games.games import prime
 
 
 def main():
-    start_game_cycle(prime.DESCRIPTION, prime.create_game_round, [])
+    start_game_cycle(prime)
 
 
 if __name__ == '__main__':

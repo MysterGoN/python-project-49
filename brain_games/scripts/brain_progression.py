@@ -5,7 +5,7 @@ from brain_games.games import progression
 
 
 def main():
-    start_game_cycle(progression.DESCRIPTION, progression.create_game_round, [])
+    start_game_cycle(progression)
 
 
 if __name__ == '__main__':

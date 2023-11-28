@@ -1,12 +1,14 @@
 import random
 
 DESCRIPTION = 'Answer "yes" if the number is even, otherwise answer "no".'
+GENERATION_START_NUMBER = 0
+GENERATION_STOP_NUMBER = 100
 
 
-def create_game_round(
-    start: int = 0, stop: int = 100
-) -> tuple[str, str]:
-    number = _generate_random_number(start, stop)
+def create_game_round() -> tuple[str, str]:
+    number = _generate_random_number(
+        GENERATION_START_NUMBER, GENERATION_STOP_NUMBER
+    )
 
     question = f'{number}'
     correct_answer = _get_correct_answer(number)

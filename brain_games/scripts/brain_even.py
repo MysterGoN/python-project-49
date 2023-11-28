@@ -5,7 +5,7 @@ from brain_games.games import even
 
 
 def main():
-    start_game_cycle(even.DESCRIPTION, even.create_game_round, [])
+    start_game_cycle(even)
 
 
 if __name__ == '__main__':
